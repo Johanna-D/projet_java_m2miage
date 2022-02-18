@@ -12,6 +12,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@Api(value = "WeatherServiceController", description = "REST Apis related to Weather Entity")
 @RestController
 public class WeatherServiceController {
 
@@ -39,11 +45,19 @@ public class WeatherServiceController {
 		};
 	}
 
+	@ApiOperation(value = "Get list of weather by pays ", response = Weather.class, tags = "getWeatherByPays")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Suceess|OK"),
+			@ApiResponse(code = 401, message = "not authorized!"),
+			@ApiResponse(code = 403, message = "forbidden!!!"),
+			@ApiResponse(code = 404, message = "not found!!!") })
+
 	@RequestMapping(value = "/weatherPays/{pays}", method = RequestMethod.GET)
 	public List<Weather> getWeatherByPays(@PathVariable String pays) {
 		return weatherData.get(pays);
 	}
 
+	@ApiOperation(value = "Get weather by ville ", response = Weather.class, tags = "getWeatherByVille")
 	@RequestMapping(value = "/weatherVille/{ville}", method = RequestMethod.GET)
 	public String getWeatherByVille(@PathVariable String ville) {
 		for (String pays : weatherData.keySet()) {
@@ -55,7 +69,7 @@ public class WeatherServiceController {
 		}
 		return "erreur";
 	}
-
+	@ApiOperation(value = "Get weather by zipCode ", response = Weather.class, tags = "getWeatherByZipCode")
 	@RequestMapping(value = "/weatherZipCode/{zipCode}", method = RequestMethod.GET)
 	public String getWeatherByZipCode(@PathVariable String zipCode) {
 		for (String pays : weatherData.keySet()) {
