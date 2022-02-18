@@ -15,6 +15,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+
+// Swagger sur http://localhost:8098/swagger-ui.html
+
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
     @Bean
     public Docket api() {

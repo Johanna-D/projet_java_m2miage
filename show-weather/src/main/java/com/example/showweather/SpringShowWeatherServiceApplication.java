@@ -8,6 +8,9 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @SpringBootApplication
 @EnableHystrixDashboard
 @EnableCircuitBreaker
+
+
+
 public class SpringShowWeatherServiceApplication {
 
 	public static void main(String[] args) {
